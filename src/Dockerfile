@@ -6,7 +6,7 @@ RUN apk add bat frog util-linux-misc asciinema git make vim bash python3 py3-pip
     ln -s /usr/src/asciinema-rec_script/bin/asciinema-rec_script /usr/bin/ &&\
     cd /
 
-COPY src /data
+COPY . /data
 
 #no pager
 ENV BAT_PAGER=cat

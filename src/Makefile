@@ -1,6 +1,6 @@
-all: out/frog.sh.cast
+all: out/frog.cast out/ucto.cast out/python-frog.cast out/python-ucto.cast
 
-out/frog.sh.cast:
-	asciinema-rec_script ./frog.sh
-	mv -f frog.sh.cast out/
+out/%.cast: %.sh
+	asciinema-rec_script ./$<
+	mv -f $<.cast $@
 
