@@ -26,9 +26,7 @@ colibri-patternmodeller --datafile republic.colibri.dat --threshold 2 --maxlengt
 
 # We can print and decode the pattern model to see the counts:
 
-colibri-patternmodeller --inputmodel republic.colibri.unindexedpatternmodel --classfile republic.colibri.cls --print  > republic-output.tsv
-
-column -t republic-output.tsv | head -n 20
+colibri-patternmodeller --inputmodel republic.colibri.unindexedpatternmodel --classfile republic.colibri.cls --print | head -n 30
 
 sleep 5
 
@@ -40,21 +38,13 @@ colibri-patternmodeller --datafile republic.colibri.dat --threshold 2 --maxlengt
 
 # Let's view the results:
 
-colibri-patternmodeller --inputmodel republic.colibri.indexedpatternmodel --classfile republic.colibri.cls --print  > republic-output-indexed.tsv
-
-column -t republic-output-indexed.tsv | head -n 20
+colibri-patternmodeller --inputmodel republic.colibri.indexedpatternmodel --classfile republic.colibri.cls --print | head -n 30
 
 sleep 5
 
 # We can also generate reports aggregating counts:
 
 colibri-patternmodeller --inputmodel republic.colibri.indexedpatternmodel --report
-
-sleep 5
-
-# Or a histogram for the occurences:
-
-colibri-patternmodeller --inputmodel republic.colibri.indexedpatternmodel --histogram | head -n 20
 
 sleep 5
 
