@@ -4,7 +4,7 @@
 # It can be used  for spelling correction or text normalisation,
 # (such as post-OCR correction or post-HTR correction). 
 
-# Analiticcl takes an alphabet file an lexicon file against which matches are made.
+# Analiticcl takes an alphabet file and a lexicon file against which matches are made.
 # Let's download two examples for those.
 
 wget https://raw.githubusercontent.com/proycon/analiticcl/master/examples/simple.alphabet.tsv
@@ -42,7 +42,7 @@ sleep 10
 
 # We can have analiticcl search and correct running text. Let's prepare some input and run it:
 
-echo "Can you please acommodate us with seperate beds?" > input2.txt
+echo -e "Can you please acommodate us with seperate beds?" > input2.txt
 
 analiticcl search --lexicon eng.aspell.lexicon --alphabet simple.alphabet.tsv < input2.txt
 
