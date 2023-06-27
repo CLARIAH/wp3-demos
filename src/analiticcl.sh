@@ -11,7 +11,7 @@ wget https://raw.githubusercontent.com/proycon/analiticcl/master/examples/simple
 wget https://raw.githubusercontent.com/proycon/analiticcl/master/examples/eng.aspell.lexicon
 
 # The alphabet file defines the alphabet, 
-# characters one the same line are considered identical for purposes of matching:
+# characters on the same line are considered identical for purposes of matching:
 
 bat  simple.alphabet.tsv
 
