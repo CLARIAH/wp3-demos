@@ -10,7 +10,8 @@
 wget https://raw.githubusercontent.com/proycon/analiticcl/master/examples/simple.alphabet.tsv
 wget https://raw.githubusercontent.com/proycon/analiticcl/master/examples/eng.aspell.lexicon
 
-# The alphabet file defines the alphabet, characters one the same line are considered identical for purposes of matching:
+# The alphabet file defines the alphabet, 
+# characters one the same line are considered identical for purposes of matching:
 
 bat  simple.alphabet.tsv
 
@@ -20,7 +21,7 @@ bat --line-range 411:+25 eng.aspell.lexicon
 
 # Let's prepare some input for the system, a few misspelled words, one on each line:
 
-echo "seperate\napparant\nacommodate\nbeleive" > input.txt
+echo -e "seperate\napparant\nacommodate\nbeleive" > input.txt
 
 # Now we ask analiticcl to correct those using the provided lexicon:
 
