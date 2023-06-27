@@ -31,3 +31,6 @@ ucto -L eng input.txt tokoutput.folia.xml
 
 bat --line-range 27:+33 tokoutput.folia.xml
 sleep 5
+
+# There is way more to ucto than shown in this limited demo.
+# See <https://github.com/LanguageMachines/ucto> for more information.

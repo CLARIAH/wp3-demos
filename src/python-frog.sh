@@ -39,3 +39,5 @@ sleep 10
 
 python frogexample_folia.py
 sleep 10
+
+# Visit <https://github.com/proycon/python-frog> for more information.

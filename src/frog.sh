@@ -50,3 +50,6 @@ bat --line-range 65:+30 output.folia.xml
 
 sleep 10
 
+# There is way more to Frog than shown in this limited demo.
+# See <https://github.com/LanguageMachines/frog> for more information.
+

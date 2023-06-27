@@ -62,3 +62,4 @@ sleep 5
 # into an indexed model you can query the model and compute relations between patterns. 
 # Check the documentation for more! There also is a Python binding to work with Colibri Core directly from Python.
 
+# Visit <https://proycon.github.io/colibri-core> for more information.
