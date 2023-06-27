@@ -14,10 +14,12 @@ frog --nostdout -X example.folia.xml input.txt
 # Let's inspect a part of this XML example that shows the tokenised structure:
 
 bat --line-range 65:+30 example.folia.xml
+sleep 10
 
 # FoLiA keeps extensive provenance information on the tools that produced or edited a document:
 
 bat --line-range 44:61 example.folia.xml
+sleep 10
 
 # In *FoLiA-tools* and *foliautils*, a broad collection of command line tools is available to work with FoLiA.
 # These contain tools for simple analysis, conversion and querying.
@@ -29,7 +31,7 @@ pip install FoLiA-tools
 
 foliavalidator example.folia.xml
 
-# A tool is available to convert to simple columned example (limited):
+# Another tool is available to convert to simple columned example (limited):
 
 folia2columns -c id,text,lemma,pos example.folia.xml
 
@@ -61,39 +63,13 @@ pip install folia
 # Then take a look at the following script we prepared:
 
 bat foliaexample.py
-sleep 12
+sleep 15
 
 # Let's run this script:
 
 python foliaexample.py
 
 # There is more to FoLiA than shown in this short demo,
-# please see <https://proycon.github.io/folia for more information.
+# please see <https://proycon.github.io/folia> for more information.
 
-# There is also a complete web-based annotation environment for FoLiA, called FLAT, see <https://github.com/proycon/flat>.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# There is also a complete web-based manual annotation environment for FoLiA, called FLAT, see <https://github.com/proycon/flat>.
