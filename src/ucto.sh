@@ -31,4 +31,3 @@ ucto -L eng input.txt tokoutput.folia.xml
 
 bat --line-range 27:+33 tokoutput.folia.xml
 sleep 5
-silent clear
