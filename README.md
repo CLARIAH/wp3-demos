@@ -6,7 +6,7 @@ screencasts.
 
 ## Demos
 
-If you want to all demos sequentially, then [click here](demo.gif) for a combined demo video (big animated gif).
+If you want to play all demos sequentially, then [click here](demo.gif) for a combined demo video (big animated gif).
 
 ### Frog
 
@@ -33,6 +33,8 @@ If you want to all demos sequentially, then [click here](demo.gif) for a combine
 ![Analiticcl demo](analiticcl.gif)
 
 ## Play
+
+If you want to play all demos sequentially, then [click here](demo.gif) for a combined demo video (big animated gif).
 
 Rather than look at pre-rendered gifs, you can play these directly in your terminal
 if you have [asciinema](https://asciineme.org) installed. This typically
