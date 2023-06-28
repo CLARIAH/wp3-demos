@@ -6,3 +6,7 @@ out/%.cast: %.sh
 
 out/%.gif: out/%.cast
 	agg --cols 150 --rows 40 --theme asciinema --font-family "FiraMono Nerd Font,Fira Mono Nerd Font,FuraMono Nerd Font" $< $@  
+
+clean:
+	rm *.cast
+	rm *.gif
