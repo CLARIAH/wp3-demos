@@ -42,7 +42,7 @@ provides better quality. Clone this repository and do for example:
 $ asciinema play frog.cast
 ```
 
-A small `play.sh` script is included in this repository that plays all demos in a loop:
+A small `play.sh` script is included in this repository that plays all demos in a continuous loop:
 
 ```
 $ ./play.sh
