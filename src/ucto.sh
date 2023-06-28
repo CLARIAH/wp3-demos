@@ -1,5 +1,9 @@
 #!/bin/sh
 
+silent figlet -c Ucto
+silent echo
+silent echo "  https://github.com/LanguageMachines/ucto"
+
 # Ucto is a rule-based tokeniser.
 # It is integrated in Frog, but can also run independently.
 

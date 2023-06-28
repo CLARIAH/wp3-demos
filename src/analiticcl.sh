@@ -1,5 +1,9 @@
 #!/bin/sh
 
+silent figlet -c Analiticcl
+silent echo
+silent echo "  https://github.com/proycon/analiticcl"
+
 # **Analiticcl** is an approximate string matching system.
 # It can be used  for spelling correction or text normalisation,
 # (such as post-OCR correction or post-HTR correction). 

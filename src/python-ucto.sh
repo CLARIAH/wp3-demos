@@ -1,5 +1,9 @@
 #!/bin/sh
 
+silent figlet -c python-ucto
+silent echo
+silent echo "  https://github.com/proycon/python-ucto"
+
 # Ucto, the tokenizer, can be used directly from Python,
 # via its python binding `python-ucto´
 # This exposes the functionality of Ucto via Python, 

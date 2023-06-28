@@ -1,5 +1,9 @@
 #!/bin/sh
 
+silent figlet -c python-frog
+silent echo
+silent echo "  https://github.com/proycon/python-frog"
+
 # Frog, the NLP tool for Dutch, can be used directly from Python, 
 # rather than through a command-line interface.
 

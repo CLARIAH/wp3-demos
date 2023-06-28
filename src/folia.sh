@@ -1,5 +1,7 @@
 #!/bin/sh
 
+silent figlet -c FoLiA
+
 # Tools like Frog, ucto and varous others developed over the years, make use of the **FoLiA** format.
 # FoLiA is an XML-based format for linguistic annotation.  It has been in use for over a decade.
 # It is indended as an interchange format for language resources and a storage format for annotated corpora.

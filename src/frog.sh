@@ -1,5 +1,9 @@
 #!/bin/sh
 
+silent figlet -c Frog
+silent echo
+silent echo "  https://github.com/LanguageMachines/frog"
+
 # Frog is a tool that integrates various NLP modules for Dutch
 
 # Amongst these modules are for instance a tokeniser (ucto), a part of speech tagger,
@@ -12,7 +16,7 @@
 
 echo "Meneer Jan Janssen wil deze zin automatisch analyseren." > input.txt
 
-# Then we invoke Frog to process it, with all available modules. This may take a while.
+# Then we invoke Frog to process it, with all available modules. This may take a while:
 
 frog input.txt > output.tsv
 
@@ -23,7 +27,7 @@ column -t output.tsv
 
 # We see the following columns in the above output:
 # 1. the token number
-# 2. the text form
+# 2. the word form
 # 3. the lemma
 # 4. the morphological analysis, 
 # 5. the part-of-speech tag in the CGN tagset
