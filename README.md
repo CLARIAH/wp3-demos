@@ -37,7 +37,7 @@ If you want to play all demos sequentially, then [click here](demo.gif) for a co
 If you want to play all demos sequentially, then [click here](demo.gif) for a combined demo video (big animated gif).
 
 Rather than look at pre-rendered gifs, you can play these directly in your terminal
-if you have [asciinema](https://asciineme.org) installed. This typically
+if you have [asciinema](https://asciinema.org/) installed. This typically
 provides better quality. Clone this repository and do for example:
 
 ```
