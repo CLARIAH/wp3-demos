@@ -27,7 +27,7 @@ sleep 10
 python frogexample.py
 sleep 10
 
-# The Frog python binding also support FoLiA XML,
+# The Frog python binding also supports FoLiA XML,
 # it then returns results you can inspect with the **FoLiA library for Python** (aka foliapy).
 
 # You can install this library as follows:

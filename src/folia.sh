@@ -8,7 +8,7 @@ silent figlet -c FoLiA
 
 # The format comes with many practical tools to allow you to work with it.
 
-# Let's first generate a FoLiA document using Frog, consisting of one dutch sentence:
+# Let's first generate a FoLiA document using Frog, consisting of one Dutch sentence:
 
 echo "Meneer Jan Janssen wil deze zin automatisch analyseren." > input.txt
 frog --nostdout -X example.folia.xml input.txt
@@ -23,7 +23,8 @@ sleep 10
 bat --line-range 44:61 example.folia.xml
 sleep 10
 
-# In *FoLiA-tools* and *foliautils*, a broad collection of command line tools is available to work with FoLiA.
+# A broad collection of command line tools is available to work with FoLiA.
+# Thesa are part of **FoLiA-tools** or **foliautils**.
 # These contain tools for simple analysis, conversion and querying.
 # Let's install FoLiA tools:
 
@@ -53,9 +54,9 @@ folia2html example.folia.xml > example.html
 
 foliaquery -q "SELECT pos IN w" example.folia.xml
 
-# The most powerful way to interact with FoLiA is probably the FoLiA library.
-# There is a FoLiA library for Python (foliapy), most often used,
-# and there is also one for C++ (libfolia). 
+# The most powerful way to interact with FoLiA, however, is probably the FoLiA library.
+# There is a FoLiA library for Python (**foliapy**), most often used,
+# and there is also one for C++ (**libfolia**). 
 # All of the aforementioned tooling, including Frog, builds on one of those libraries.
 
 # Let's install the FoLiA library for Python first:

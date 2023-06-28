@@ -13,3 +13,6 @@ out/%.gif: out/%.cast
 out/%.ts: out/%.gif
 	ffmpeg -i $< -f mpegts $@
 
+clean:
+	rm *.gif *.cast *.ts
+

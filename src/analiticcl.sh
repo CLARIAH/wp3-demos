@@ -4,7 +4,7 @@ silent figlet -c Analiticcl
 silent echo
 silent echo "  https://github.com/proycon/analiticcl"
 
-# **Analiticcl** is an approximate string matching system.
+# Analiticcl is an approximate string matching system.
 # It can be used  for spelling correction or text normalisation,
 # (such as post-OCR correction or post-HTR correction). 
 
@@ -41,8 +41,8 @@ bat output.json
 sleep 10
 
 # The innovative feature of analiticcl is the speed at which it can compute these comparisons,
-# it uses *anagram hashing* as a heuristic and is much faster than
-# computing levenshtein distance on all candidate pairs individually.
+# it uses *anagram hashing* as a heuristic and is much faster
+# than computing levenshtein distance on all candidate pairs individually.
 
 # We can have analiticcl search and correct running text. Let's prepare some input and run it:
 
@@ -53,8 +53,8 @@ analiticcl search --lexicon eng.aspell.lexicon --alphabet simple.alphabet.tsv < 
 sleep 10
 
 # There is way more to analiticcl than shown in this limited demo.
-# * There is a wealth of parameters to configure the search behaviour
-# * Instead of lexicons, you may supply pre-computed variant lists, analiticcl can generate such variant lists for you as well.
+# * There is a wealth of configurate parameters to tweak the search behaviour
+# * Instead of lexicons, you may supply (multiple) pre-computed variant lists, analiticcl can generate such variant lists for you as well.
 # * You may pass a list of character confusibles
 # * You can pass context rules and do even do rudimentary (entity) tagging with those.
 # * A simple n-gram language model may be included.

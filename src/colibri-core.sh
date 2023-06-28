@@ -4,7 +4,7 @@ silent figlet -c Colibri Core
 silent echo
 silent echo "  https://proycon.github.io/colibri-core"
 
-# **Colibri core** is a tool to *efficiently* search patterns in large plain-text corpora .
+# Colibri core is a tool to efficiently search patterns in large plain-text corpora .
 # Patterns are either n-grams or non-consecutive skipgrams/flexgrams. 
 
 # Colibri Core uses an optimised compression to be able to hold more in memory.
