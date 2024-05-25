@@ -33,13 +33,13 @@ stam init --resource smallquote.txt demo.store.stam.json
 stam annotate --query 'ADD ANNOTATION WITH DATA "my-vocab" "type" "sentence"; ID "sentence1"; TARGET ?x { SELECT TEXT ?x WHERE RESOURCE "smallquote.txt" OFFSET 0 25; }' demo.store.stam.json
 
 # With `stam info` we can get some raw information about what our annotation store contains,
-# and how much memory it consumes. It will show we now have one annotation dataset and one annotation:
+# and how much memory it consumes. It will show we now have one resource, one annotation dataset and one annotation:
 
 stam info demo.store.stam.json
 
 # In verbose mode we get the raw details:
 
-stam info --info demo.store.stam.json
+stam info --verbose demo.store.stam.json
 
 # In the query we did we annotated the first sentence in our resource (char offset 0-25)
 # as being of `type` (*datakey*), `sentence` (*datavalue*), in some 
@@ -59,7 +59,7 @@ column -s "	" -t output.tsv
 
 stam view --format ansi --query 'SELECT RESOURCE ?res'  --query '@VALUETAG SELECT ANNOTATION ?sentence WHERE RESOURCE ?res; DATA "my-vocab" "type" = "sentence";' demo.store.stam.json
 
-# There are more formats in which we can export data by changing the `--format` parameter. 
+# There are more formats to which we can export data by changing the `--format` parameter. 
 # We can for example query results as STAM JSON (wrapped in a result object), which is pretty verbose
 # and corresponds largely to how it is stored in the JSON file:
 
@@ -183,7 +183,7 @@ TRANSPOSITION_ID=$(stam export --alignments demo.store.stam.json | cut -f 1)
 
 # Then we transpose all annotations (captured by the query) over that transposition:
 
-stam transpose --ignore-errors --transposition "$TRANSPOSITION_ID" --query 'SELECT ANNOTATION WHERE RESOURCE "smallquote.txt";'
+stam transpose --ignore-errors --transposition "$TRANSPOSITION_ID" --query 'SELECT ANNOTATION WHERE RESOURCE "smallquote.txt";' demo.store.stam.json
 
 # Let's see if it worked and if we have similar annotations on both texts now:
 
