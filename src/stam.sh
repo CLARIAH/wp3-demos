@@ -14,7 +14,11 @@ silent echo "  https://github.com/annotation/stam-tools"
 
 cargo install stam-tools
 
-# Let's create a small text file to annotate
+# This provides us with the `stam` tool which offers a wide variety of subcommands we will go through in this tutorial
+
+stam help
+
+# To start, we create a small text file to annotate:
 
 echo "I have no special talent. I am only passionately curious. -- Albert Einstein" > smallquote.txt
 
@@ -28,7 +32,16 @@ stam init --resource smallquote.txt demo.store.stam.json
 
 stam annotate --query 'ADD ANNOTATION WITH DATA "my-vocab" "type" "sentence"; ID "sentence1"; TARGET ?x { SELECT TEXT ?x WHERE RESOURCE "smallquote.txt" OFFSET 0 25; }' demo.store.stam.json
 
-# In the above query we annotated the first sentence in our resource (char offset 0-25)
+# With `stam info` we can get some raw information about what our annotation store contains,
+# and how much memory it consumes. It will show we now have one annotation dataset and one annotation:
+
+stam info demo.store.stam.json
+
+# In verbose mode we get the raw details:
+
+stam info --info demo.store.stam.json
+
+# In the query we did we annotated the first sentence in our resource (char offset 0-25)
 # as being of `type` (*datakey*), `sentence` (*datavalue*), in some 
 # fictitious vocabulary (*annotation dataset*) we call "my-vocab".
 
@@ -88,15 +101,22 @@ stam import --no-header --inputfile annotations2.tsv --resource smallquote.txt -
 
 stam view --format ansi --query 'SELECT RESOURCE ?res' --query '@VALUETAG SELECT ANNOTATION ?type WHERE RESOURCE ?res; DATA "my-vocab" "type";' demo.store.stam.json
 
-# For more advanced textual matching, we have `stam tag`. 
-# In an external configuration file, this holds a set of regular expressions 
-# and associates annotation data with each.
+# There are tools for more advanced textual matching, we can for example do
+# `stam grep` to scan all texts (no indexing) and find anything based on a regular expression. 
+# Like for instance all 2-letter lowercase words. It will return exact character positions:
+
+stam grep -e "\b[a-z][a-z]\b" demo.store.stam.json
+
+# If we want to directly associate annotations with any found matches, we can use `stam tag`. 
+# In an external configuration file, this takes a set of regular expressions 
+# with associated annotation data for each.
 
 # Let's download some simple tokenisation rules:
 
 curl https://raw.githubusercontent.com/knaw-huc/stam-experiments/main/config/stam-tag/simpletagger.tsv | tee simpletagger.tsv | column -s "	" -t
 
-# and run a tagger using those on our data:
+# It consists of just three regular expression to mark three types of tokens,
+# We now run the tagger with this configuration on our data:
 
 stam tag --rules simpletagger.tsv demo.store.stam.json
 
@@ -111,3 +131,74 @@ stam view --format ansi --query 'SELECT RESOURCE ?res' --query '@VALUETAG SELECT
 stam query --query 'SELECT ANNOTATION ?sentence WHERE ID "sentence1"; { SELECT ANNOTATION ?token WHERE RELATION ?sentence EMBEDS; DATA "simpletokens" "type"; }' demo.store.stam.json > output2.tsv
 
 column -s "	" -t output2.tsv
+
+# The downside of stand-off annotation is that is very sensitive
+# to changes. One has to ensure that the target of the annotations does not change.
+# If we were to change `smallquote.txt`, all our annotations would be invalidated !
+
+# STAM provides a means to check this validity. First we must enable it as follows:
+
+stam validate --make demo.store.stam.json
+
+# Then we can run validation checks:
+
+stam validate --verbose demo.store.stam.json
+
+# Let's now make a text that differs somewhat from our original:
+
+echo 'I like the quote "I have no special talent. I am only passionately curious." by Albert Einstein' > smallquote2.txt
+
+# And then we temporarily make a backup of the original text and overwrite it with the new version:
+
+mv smallquote.txt smallquote.txt.bak
+cp smallquote2.txt smallquote.txt
+
+# Now the validation will rightly complain because we changed the (stand-off) text!
+
+stam validate --verbose demo.store.stam.json
+
+# Restore the backup so all is well again:
+
+mv smallquote.txt.bak smallquote.txt
+
+# Let's take this a bit further. Our new text is pretty similar to our old one.
+# We can use `stam align` to compute an alignment between the two:
+
+# First we add the other text to the store:
+
+stam add --resource  smallquote2.txt demo.store.stam.json
+
+# Then we compute a so-called *transposition* using `stam align`.
+# A transposition is just an annotation but with certain specific properties and vocabulary.
+# (documented at https://github.com/annotation/stam/tree/master/extensions/stam-transpose)
+
+stam align --verbose --trim --resource smallquote.txt --resource smallquote2.txt demo.store.stam.json | column -s "	" -t
+
+# Once we have a transposition, we can do a very powerful thing: we can copy
+# any annotations from the one resource to the other, via the transposition.
+
+# First we do some shell scripting to grab the ID of the transposition we just created:
+
+TRANSPOSITION_ID=$(stam export --alignments demo.store.stam.json | cut -f 1)
+
+# Then we transpose all annotations (captured by the query) over that transposition:
+
+stam transpose --ignore-errors --transposition "$TRANSPOSITION_ID" --query 'SELECT ANNOTATION WHERE RESOURCE "smallquote.txt";'
+
+# Let's see if it worked and if we have similar annotations on both texts now:
+
+stam view --format ansi --query 'SELECT RESOURCE ?res' --query '@VALUETAG SELECT ANNOTATION ?type WHERE RESOURCE ?res; DATA "my-vocab" "type";' --query '@VALUETAG SELECT ANNOTATION ?tokentype WHERE RESOURCE ?res; DATA "simpletokens" "type";' demo.store.stam.json
+
+# This may go a bit too in-depth, but the results of `stam transpose` are themselves transpositions, 
+# the provenance for each transposed annotation is explicitly preserved in those.
+
+# Every time we ran the `stam` tool, the whole annotation store was loaded
+# from scratch. For our tiny demo that was fine, but with bigger data that quickly
+# becomes a huge burden. You can use `stam batch` with a script of subcommands
+# to efficiently execute in sequence and defer saving to the end.
+
+# But for now, we end this demo. Remember that you can run `stam [subcommand] --help` for any subcommand.
+# We also have a Jupyter Notebook "Stand-off Text Annotation for Pythonistas" that demoes STAM for Python users,
+# and extensive API references for both Rust and Python. Thanks for your attention!
+
+sleep 10
