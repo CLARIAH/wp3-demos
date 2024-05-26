@@ -232,7 +232,12 @@ sleep 4
 # to efficiently execute in sequence and defer saving to the end.
 
 # But for now, we end this demo. Remember that you can run `stam [subcommand] --help` for any subcommand.
-# We also have a Jupyter Notebook "Stand-off Text Annotation for Pythonistas" that demoes STAM for Python users,
-# and extensive API references for both Rust and Python. Thanks for your attention!
+# We also have a Jupyter Notebook "Stand-off Text Annotation for Pythonistas" that demoes STAM for Python users:
+# ( see https://nbviewer.org/github/annotation/stam-python/blob/master/tutorial.ipynb)
+# This also exposes a lot of the funcionality we have seen in STAM-tools, and lower-level functionality.
+
+# Extensive API references are also available for both Rust and Python.
+
+# Thanks for your attention!
 
 sleep 10
