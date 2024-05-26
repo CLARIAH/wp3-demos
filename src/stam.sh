@@ -204,7 +204,7 @@ bat -P example.tei.xml
 
 # We will untangle the above TEI XML to STAM, to do that we first download
 # an external configuration file that defines a mapping from TEI to STAM.
-# You can create or tweak such mappings yourself for any XML format.
+# You can create or tweak such mappings yourself for any XML format with inline annotations.
 
 curl https://raw.githubusercontent.com/annotation/stam-tools/master/config/fromxml/tei.toml > tei.toml
 
@@ -216,7 +216,7 @@ stam fromxml --config tei.toml --inputfile example.tei.xml demo2.store.stam.json
 
 cat example.tei.txt
 
-# We can do a visualisation with for example a highlight queries for names and terms:
+# We can do a visualisation with, for example, highlight queries for names and terms:
 
 stam view --format ansi --query 'SELECT RESOURCE ?res' --query '@KEYTAG SELECT ANNOTATION ?name WHERE RESOURCE ?res; DATA "http://www.tei-c.org/ns/1.0" "name";' --query '@KEYTAG SELECT ANNOTATION ?term WHERE RESOURCE ?res; DATA "http://www.tei-c.org/ns/1.0" "term";' demo2.store.stam.json
 
