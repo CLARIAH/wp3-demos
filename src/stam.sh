@@ -128,7 +128,7 @@ stam view --format ansi --query 'SELECT RESOURCE ?res' --query '@VALUETAG SELECT
 # This allows us to formulate more powerful queries that exploit spatial relationships between annotations.
 # Let's for example find all the tokens in the first sentence:
 
-stam query --query 'SELECT ANNOTATION ?sentence WHERE ID "sentence1"; { SELECT ANNOTATION ?token WHERE RELATION ?sentence EMBEDS; DATA "simpletokens" "type"; }' demo.store.stam.json > output2.tsv
+stam query --query 'SELECT ANNOTATION ?sentence WHERE DATA "my-vocab" "type" = "sentence"; LIMIT 1; { SELECT ANNOTATION ?token WHERE RELATION ?sentence EMBEDS; DATA "simpletokens" "type"; }' demo.store.stam.json > output2.tsv
 
 column -s "	" -t output2.tsv
 
@@ -191,6 +191,40 @@ stam view --format ansi --query 'SELECT RESOURCE ?res' --query '@VALUETAG SELECT
 
 # This may go a bit too in-depth, but the results of `stam transpose` are themselves transpositions, 
 # the provenance for each transposed annotation is explicitly preserved in those.
+
+
+# Often, we encounter annotated texts in XML-based formats like TEI P5, FoLiA, PageXML or HTML.
+# This approach can be constrasted to STAM's stand-off approach.
+# But we can  use `stam fromxml` to *untangle* the text and annotations from
+# such XML formats, and produce stand-off annotations on text:
+
+silent echo -e "<TEI xmlns=\"http://www.tei-c.org/ns/1.0\">\n<text>\n <body>\n  <head>Review</head>\n  <p><title>Die Leiden des jungen <name>Werther</name></title> by <name>Goethe</name> is an <emph>exceptionally</emph> good example of a book full of <term>Weltschmerz</term>.</p>\n </body>\n</text>\n</TEI>" > example.tei.xml
+
+bat -P example.tei.xml
+
+# We will untangle the above TEI XML to STAM, to do that we first download
+# an external configuration file that defines a mapping from TEI to STAM.
+# You can create or tweak such mappings yourself for any XML format.
+
+curl https://raw.githubusercontent.com/annotation/stam-tools/master/config/fromxml/tei.toml > tei.toml
+
+# Then we run `stam fromxml` with this mapping:
+
+stam fromxml --config tei.toml --inputfile example.tei.xml demo2.store.stam.json
+
+# This produces a new STAM annotation store alongside a new text file, stripped of any markup:
+
+cat example.tei.txt
+
+# We can do a visualisation with for example a highlight queries for names and terms:
+
+stam view --format ansi --query 'SELECT RESOURCE ?res' --query '@KEYTAG SELECT ANNOTATION ?name WHERE RESOURCE ?res; DATA "http://www.tei-c.org/ns/1.0" "name";' --query '@KEYTAG SELECT ANNOTATION ?term WHERE RESOURCE ?res; DATA "http://www.tei-c.org/ns/1.0" "term";' demo2.store.stam.json
+
+# Or we can export all output to TSV to inspect what we got from this: 
+
+stam export --verbose demo2.store.stam.json | column -s "	" -t
+
+sleep 4
 
 # Every time we ran the `stam` tool, the whole annotation store was loaded
 # from scratch. For our tiny demo that was fine, but with bigger data that quickly
