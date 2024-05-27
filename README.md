@@ -32,6 +32,10 @@ If you want to play all demos sequentially, then [click here](demo.gif) for a co
 
 ![Analiticcl demo](analiticcl.gif)
 
+### STAM
+
+![STAM demo](stam.gif)
+
 ## Play
 
 If you want to play all demos sequentially, then [click here](demo.gif) for a combined demo video (big animated gif).
