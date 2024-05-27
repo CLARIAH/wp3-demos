@@ -34,7 +34,7 @@ If you want to play all demos sequentially, then [click here](demo.gif) for a co
 
 ### STAM
 
-![STAM demo](stam.webm)
+[![STAM demo](stamvideothumbnail.jpg)](https://download.anaproy.nl/stamdemo.webm)
 
 ## Play
 
