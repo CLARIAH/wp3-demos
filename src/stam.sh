@@ -30,7 +30,11 @@ stam init --resource smallquote.txt demo.store.stam.json
 # The most powerful means is via a STAMQL `ADD` query
 # (documented at https://github.com/annotation/stam/tree/master/extensions/stam-query#add-query)
 
-stam annotate --query 'ADD ANNOTATION WITH DATA "my-vocab" "type" "sentence"; ID "sentence1"; TARGET ?x { SELECT TEXT ?x WHERE RESOURCE "smallquote.txt" OFFSET 0 25; }' demo.store.stam.json
+stam annotate --query 'ADD ANNOTATION WITH DATA "my-vocab" "type" "sentence"; TARGET ?x { SELECT TEXT ?x WHERE RESOURCE "smallquote.txt" OFFSET 0 25; }' demo.store.stam.json
+
+# In the above query we we annotated the first sentence in our resource (char offset 0-25)
+# as being of `type` (*datakey*), `sentence` (*datavalue*), in some 
+# fictitious vocabulary (*annotation dataset*) we call "my-vocab".
 
 # With `stam info` we can get some raw information about what our annotation store contains,
 # and how much memory it consumes. It will show we now have one resource, one annotation dataset and one annotation:
@@ -40,10 +44,6 @@ stam info demo.store.stam.json
 # In verbose mode we get the raw details:
 
 stam info --verbose demo.store.stam.json
-
-# In the query we did we annotated the first sentence in our resource (char offset 0-25)
-# as being of `type` (*datakey*), `sentence` (*datavalue*), in some 
-# fictitious vocabulary (*annotation dataset*) we call "my-vocab".
 
 # Having made an annotation, we can query for it using STAMQL. This will produce simple TSV output.
 
